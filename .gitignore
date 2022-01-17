@@ -1,2 +1,3 @@
-/node_modules
-/reources
+node_modules/
+reources/
+server/
