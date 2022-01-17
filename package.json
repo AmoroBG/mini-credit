@@ -1,0 +1,27 @@
+{
+  "name": "mini-credit",
+  "version": "1.0.0",
+  "description": "Web platform for individuals and SMEs to access credit failities",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmoroBG/mini-credit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmoroBG/mini-credit/issues"
+  },
+  "homepage": "https://github.com/AmoroBG/mini-credit#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
