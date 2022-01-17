@@ -1,12 +1,20 @@
 // REQUIRE PACKAGES - EXTERNAL
 const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 // REQUIRE MODULES - INTERNAL
+
+// LOAD CONFIG
+dotenv.config({ path: "./servers/config/config.env" });
 
 // INITIALIZE APP
 const app = express();
 
 // MIDDLEWARES
+// body-parser
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // ROUTES
 
