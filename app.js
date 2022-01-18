@@ -1,15 +1,19 @@
 // REQUIRE PACKAGES - EXTERNAL
 const express = require("express");
-const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 // REQUIRE MODULES - INTERNAL
+const dbconnect = require("./server/database/dbconnection");
+const userRoutes = require("./routes/userRoutes");
 
 // LOAD CONFIG
-dotenv.config({ path: "./servers/config/config.env" });
+dotenv.config({ path: "./server/config/config.env" });
 
 // INITIALIZE APP
 const app = express();
+
+// DB CONNECTION
+dbconnect;
 
 // MIDDLEWARES
 // body-parser
@@ -22,6 +26,11 @@ app.use(express.json());
 app.get("/", function (req, res) {
   res.send("<h1>Mini-Credit</h1>");
 });
+
+// Users Route
+app.use("/user", userRoutes);
+
+
 
 // SERVER
 const PORT = process.env.PORT || 3000;
