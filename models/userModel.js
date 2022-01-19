@@ -12,7 +12,7 @@ const userSchema = {
   phone: {
     type: String,
     require: [true, "Please enter your phone number"],
-    unique: true,
+    // unique: true,
   },
   isPhoneVerified: {
     type: Boolean,
@@ -23,12 +23,12 @@ const userSchema = {
   gender: String,
   DoB: Date,
   address: String,
+  profileImage: String,
 
-  email: {
-    type: String,
-    unique: true,
-    lowercase: true,
-  },
+  // email: {
+  //   type: String,
+  //   lowercase: true,
+  // },
   password: {
     type: String,
     minlength: [8, "Please password can not be less 8 characters"],
