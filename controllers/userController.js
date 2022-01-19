@@ -19,14 +19,16 @@ exports.registerUser = function (req, res) {
     });
     return;
   }
-  // Check if phone number is already registered
+
+  // Check if phone number is already registered or not. If not, create user
   User.find({ phone: req.body.phone }).then(function (foundUser) {
+    // Check if phone number is already registered
     if (foundUser.length >= 1) {
       res.status(409).send({
         message: "Phone number is alredy registered",
       });
     } else {
-      //  Create user
+      //  Create user if phone number is not registered
       const user = new User({
         firstName: req.body.firstName,
         phone: req.body.phone,
