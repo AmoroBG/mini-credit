@@ -1,44 +1,21 @@
 // REQUIRE PACKAGES - EXTERNAL
-const Joi = require("@hapi/joi");
 
 // REQUIRE MODULES - INTERNAL
 const User = require("../models/userModel");
-
-// Validation
-const userRegistrationValidationSchema = Joi.object({
-  firstName: Joi.string().trim().min(3).max(16).required(),
-  phone: Joi.string()
-    .trim()
-    .length(10)
-    .pattern(/^[0-9]+$/)
-    .required(),
-});
+const Validations = require("../middlewares/validations.js");
 
 // Register user - POST - "/register"
 exports.registerUser = function (req, res) {
-  // Validate data receive from the user
-  const { error } = userRegistrationValidationSchema.validate(req.body);
-
+  // Validate data received from the user
+  const { error } = Validations.registerValidation(req.body);
+  // If there is an error or validation fail
   if (error) {
     res.status(400).send({
-      Error: error.details[0].message,
+      error: error.details[0].message,
     });
+    return;
   }
-
-  // Check if all fields (firstname and phone) are empty
-  // if (!req.body) {
-  //   res.status(400).send({
-  //     message: "Fields cannot be empty",
-  //   });
-  //   return;
-  // }
-  // // Check if first name or phone is empty
-  // if (!req.body.firstName || !req.body.phone) {
-  //   res.status(400).send({
-  //     message: "fist name or phone number cannot be empty",
-  //   });
-  //   return;
-  // }
+  // else If no error
 
   // Check if phone number is already registered or not. If not, create user
   User.find({ phone: req.body.phone }).then(function (foundUser) {
